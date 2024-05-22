@@ -21,24 +21,13 @@
   </div>
 </template>
 
-<script lang="ts">
-export interface VueColorAvatarRef {
-  avatarRef: HTMLDivElement
-}
-</script>
-
 <script lang="ts" setup>
-import { nextTick, ref, toRefs, watch, watchEffect } from 'vue'
+import { ref, toRefs, watch, watchEffect } from 'vue'
 
 import { WidgetType, WrapperShape } from '@/enums'
 import type { AvatarOption } from '@/types'
 import { getRandomAvatarOption } from '@/utils'
-import {
-  AVATAR_LAYER,
-  NONE,
-  NOT_COMPATIBLE_AGENTS,
-  SHAPE_STYLE_SET,
-} from '@/utils/constant'
+import { AVATAR_LAYER, NONE, SHAPE_STYLE_SET } from '@/utils/constant'
 import { widgetData } from '@/utils/dynamic-data'
 
 import Background from './widgets/Background.vue'
@@ -54,9 +43,7 @@ const { size: avatarSize } = toRefs(props)
 
 const avatarOption = ref<AvatarOption>(getRandomAvatarOption())
 
-const avatarRef = ref<VueColorAvatarRef['avatarRef']>()
-
-defineExpose({ avatarRef })
+const avatarRef = ref<HTMLDivElement>()
 
 function getWrapperShapeClassName() {
   return {
@@ -82,11 +69,6 @@ function resetAvatarOption() {
 async function outputImage() {
   const avatarEle = avatarRef.value
 
-  const userAgent = window.navigator.userAgent.toLowerCase()
-  const notCompatible = NOT_COMPATIBLE_AGENTS.some(
-    (agent) => userAgent.indexOf(agent) !== -1
-  )
-
   if (avatarEle) {
     const html2canvas = (await import('html2canvas')).default
     const canvas = await html2canvas(avatarEle, {
@@ -95,6 +77,8 @@ async function outputImage() {
     emit('imageChange', canvas.toDataURL())
   }
 }
+
+defineExpose({ resetAvatarOption })
 
 watch(
   () => avatarOption.value,
