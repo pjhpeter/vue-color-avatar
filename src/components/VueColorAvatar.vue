@@ -8,6 +8,7 @@
       ...getWrapperShapeStyle(),
     }"
     :class="getWrapperShapeClassName()"
+    @click="resetAvatarOption"
   >
     <Background :color="avatarOption.background.color" />
 
@@ -27,28 +28,31 @@ export interface VueColorAvatarRef {
 </script>
 
 <script lang="ts" setup>
-import { ref, toRefs, watchEffect } from 'vue'
+import { nextTick, ref, toRefs, watch, watchEffect } from 'vue'
 
 import { WidgetType, WrapperShape } from '@/enums'
 import type { AvatarOption } from '@/types'
 import { getRandomAvatarOption } from '@/utils'
-import { AVATAR_LAYER, NONE, SHAPE_STYLE_SET } from '@/utils/constant'
+import {
+  AVATAR_LAYER,
+  NONE,
+  NOT_COMPATIBLE_AGENTS,
+  SHAPE_STYLE_SET,
+} from '@/utils/constant'
 import { widgetData } from '@/utils/dynamic-data'
 
 import Background from './widgets/Background.vue'
 import Border from './widgets/Border.vue'
 
-interface VueColorAvatarProps {
-  option: AvatarOption
-  size?: number
-}
-
-const props = withDefaults(defineProps<VueColorAvatarProps>(), {
-  option: () => getRandomAvatarOption(),
+const props = withDefaults(defineProps<{ size: number }>(), {
   size: 280,
 })
 
-const { option: avatarOption, size: avatarSize } = toRefs(props)
+const emit = defineEmits(['imageChange'])
+
+const { size: avatarSize } = toRefs(props)
+
+const avatarOption = ref<AvatarOption>(getRandomAvatarOption())
 
 const avatarRef = ref<VueColorAvatarRef['avatarRef']>()
 
@@ -58,18 +62,47 @@ function getWrapperShapeClassName() {
   return {
     [WrapperShape.Circle]:
       avatarOption.value.wrapperShape === WrapperShape.Circle,
-    [WrapperShape.Square]:
-      avatarOption.value.wrapperShape === WrapperShape.Square,
-    [WrapperShape.Squircle]:
-      avatarOption.value.wrapperShape === WrapperShape.Squircle,
+    // [WrapperShape.Square]:
+    //   avatarOption.value.wrapperShape === WrapperShape.Square,
+    // [WrapperShape.Squircle]:
+    //   avatarOption.value.wrapperShape === WrapperShape.Squircle,
   }
 }
 
 function getWrapperShapeStyle() {
-  return SHAPE_STYLE_SET[avatarOption.value.wrapperShape]
+  return SHAPE_STYLE_SET[avatarOption.value.wrapperShape!]
 }
 
 const svgContent = ref('')
+
+function resetAvatarOption() {
+  avatarOption.value = getRandomAvatarOption()
+}
+
+async function outputImage() {
+  const avatarEle = avatarRef.value
+
+  const userAgent = window.navigator.userAgent.toLowerCase()
+  const notCompatible = NOT_COMPATIBLE_AGENTS.some(
+    (agent) => userAgent.indexOf(agent) !== -1
+  )
+
+  if (avatarEle) {
+    const html2canvas = (await import('html2canvas')).default
+    const canvas = await html2canvas(avatarEle, {
+      backgroundColor: null,
+    })
+    emit('imageChange', canvas.toDataURL())
+  }
+}
+
+watch(
+  () => avatarOption.value,
+  (val) => setTimeout(() => outputImage(), 100),
+  {
+    immediate: true,
+  }
+)
 
 watchEffect(async () => {
   const sortedList = Object.entries(avatarOption.value.widgets).sort(

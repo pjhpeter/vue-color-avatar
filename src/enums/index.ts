@@ -32,8 +32,8 @@ export enum WidgetType {
 
 export enum WrapperShape {
   Circle = 'circle',
-  Square = 'square',
-  Squircle = 'squircle',
+  // Square = 'square',
+  // Squircle = 'squircle',
 }
 
 /**

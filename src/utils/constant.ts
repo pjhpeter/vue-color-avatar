@@ -114,95 +114,95 @@ export const NONE = 'none'
 export const TRIGGER_PROBABILITY = 0.1
 
 export const SPECIAL_AVATARS: Readonly<AvatarOption[]> = [
-  {
-    wrapperShape: 'squircle',
-    background: {
-      color: 'linear-gradient(62deg, #8EC5FC, #E0C3FC)',
-      borderColor: 'transparent',
-    },
-    widgets: {
-      face: {
-        shape: FaceShape.Base,
-        fillColor: '#F9C9B6',
-      },
-      tops: {
-        shape: TopsShape.Pixie,
-        fillColor: '#d2eff3',
-      },
-      ear: {
-        shape: EarShape.Attached,
-      },
-      earrings: {
-        shape: EarringsShape.Stud,
-      },
-      eyebrows: {
-        shape: EyebrowsShape.Up,
-      },
-      eyes: {
-        shape: EyesShape.Eyeshadow,
-      },
-      nose: {
-        shape: NoseShape.Pointed,
-      },
-      glasses: {
-        shape: NONE,
-      },
-      mouth: {
-        shape: MouthShape.Laughing,
-      },
-      beard: {
-        shape: NONE,
-      },
-      clothes: {
-        shape: ClothesShape.Crew,
-        fillColor: '#e0ddff',
-      },
-    },
-  },
-  {
-    wrapperShape: 'squircle',
-    background: {
-      color: '#fd6f5d',
-      borderColor: 'transparent',
-    },
-    widgets: {
-      face: {
-        shape: FaceShape.Base,
-        fillColor: '#F9C9B6',
-      },
-      tops: {
-        shape: TopsShape.Clean,
-      },
-      ear: {
-        shape: EarShape.Attached,
-      },
-      earrings: {
-        shape: NONE,
-      },
-      eyebrows: {
-        shape: EyebrowsShape.Eyelashesdown,
-      },
-      eyes: {
-        shape: EyesShape.Round,
-      },
-      nose: {
-        shape: NoseShape.Round,
-      },
-      glasses: {
-        shape: NONE,
-      },
-      mouth: {
-        shape: MouthShape.Surprised,
-      },
-      beard: {
-        shape: NONE,
-      },
-      clothes: {
-        shape: ClothesShape.Crew,
-        fillColor: '#f4d150',
-      },
-    },
-  },
+  // {
+  //   wrapperShape: 'squircle',
+  //   background: {
+  //     color: 'linear-gradient(62deg, #8EC5FC, #E0C3FC)',
+  //     borderColor: 'transparent',
+  //   },
+  //   widgets: {
+  //     face: {
+  //       shape: FaceShape.Base,
+  //       fillColor: '#F9C9B6',
+  //     },
+  //     tops: {
+  //       shape: TopsShape.Pixie,
+  //       fillColor: '#d2eff3',
+  //     },
+  //     ear: {
+  //       shape: EarShape.Attached,
+  //     },
+  //     earrings: {
+  //       shape: EarringsShape.Stud,
+  //     },
+  //     eyebrows: {
+  //       shape: EyebrowsShape.Up,
+  //     },
+  //     eyes: {
+  //       shape: EyesShape.Eyeshadow,
+  //     },
+  //     nose: {
+  //       shape: NoseShape.Pointed,
+  //     },
+  //     glasses: {
+  //       shape: NONE,
+  //     },
+  //     mouth: {
+  //       shape: MouthShape.Laughing,
+  //     },
+  //     beard: {
+  //       shape: NONE,
+  //     },
+  //     clothes: {
+  //       shape: ClothesShape.Crew,
+  //       fillColor: '#e0ddff',
+  //     },
+  //   },
+  // },
+  // {
+  //   wrapperShape: 'squircle',
+  //   background: {
+  //     color: '#fd6f5d',
+  //     borderColor: 'transparent',
+  //   },
+  //   widgets: {
+  //     face: {
+  //       shape: FaceShape.Base,
+  //       fillColor: '#F9C9B6',
+  //     },
+  //     tops: {
+  //       shape: TopsShape.Clean,
+  //     },
+  //     ear: {
+  //       shape: EarShape.Attached,
+  //     },
+  //     earrings: {
+  //       shape: NONE,
+  //     },
+  //     eyebrows: {
+  //       shape: EyebrowsShape.Eyelashesdown,
+  //     },
+  //     eyes: {
+  //       shape: EyesShape.Round,
+  //     },
+  //     nose: {
+  //       shape: NoseShape.Round,
+  //     },
+  //     glasses: {
+  //       shape: NONE,
+  //     },
+  //     mouth: {
+  //       shape: MouthShape.Surprised,
+  //     },
+  //     beard: {
+  //       shape: NONE,
+  //     },
+  //     clothes: {
+  //       shape: ClothesShape.Crew,
+  //       fillColor: '#f4d150',
+  //     },
+  //   },
+  // },
 ]
 
 export const NOT_COMPATIBLE_AGENTS = [
@@ -218,11 +218,11 @@ export const SHAPE_STYLE_SET = {
   [WrapperShape.Circle]: {
     borderRadius: '50%',
   },
-  [WrapperShape.Square]: {
-    borderRadius: '0',
-  },
-  [WrapperShape.Squircle]: {
-    // TODO: Radius should adapt to the avatar size
-    borderRadius: '25px',
-  },
+  // [WrapperShape.Square]: {
+  //   borderRadius: '0',
+  // },
+  // [WrapperShape.Squircle]: {
+  //   // TODO: Radius should adapt to the avatar size
+  //   borderRadius: '25px',
+  // },
 }
