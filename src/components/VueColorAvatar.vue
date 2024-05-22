@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, toRefs, watch, watchEffect } from 'vue'
+import { ref, shallowRef, toRefs, watch, watchEffect } from 'vue'
 
 import { WidgetType, WrapperShape } from '@/enums'
 import type { AvatarOption } from '@/types'
@@ -33,7 +33,7 @@ import { widgetData } from '@/utils/dynamic-data'
 import Background from './widgets/Background.vue'
 import Border from './widgets/Border.vue'
 
-const props = withDefaults(defineProps<{ size: number }>(), {
+const props = withDefaults(defineProps<{ size?: number }>(), {
   size: 280,
 })
 
@@ -43,7 +43,7 @@ const { size: avatarSize } = toRefs(props)
 
 const avatarOption = ref<AvatarOption>(getRandomAvatarOption())
 
-const avatarRef = ref<HTMLDivElement>()
+const avatarRef = shallowRef<HTMLDivElement | null>(null)
 
 function getWrapperShapeClassName() {
   return {
