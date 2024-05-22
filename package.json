@@ -1,7 +1,11 @@
 {
   "name": "vue-color-avatar",
   "version": "1.0.0",
-  "private": true,
+  "main": "dist/vue-color-avatar.umd.js",
+  "module": "dist/vue-color-avatar.es.js",
+  "files": [
+    "dist"
+  ],
   "license": "MIT",
   "author": "LeoKu<czc12580520@gmail.com> (https://leoku.top)",
   "scripts": {

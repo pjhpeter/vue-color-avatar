@@ -5,6 +5,13 @@ import { defineConfig } from 'vite'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  build: {
+    lib: {
+      entry: path.resolve(__dirname, 'src/index.js'),
+      name: 'VueColorAvatar',
+      fileName: (format) => `vue-color-avatar.${format}.js`,
+    },
+  },
   plugins: [
     vue(),
     ...(mode === 'prerelease'
