@@ -1,6 +1,6 @@
 {
   "name": "vue-color-avatar-pjh",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "main": "dist/vue-color-avatar.umd.js",
   "module": "dist/vue-color-avatar.es.js",
   "files": [
