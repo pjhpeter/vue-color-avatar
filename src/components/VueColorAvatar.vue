@@ -1,6 +1,5 @@
 <template>
   <div
-    ref="avatarRef"
     class="vue-color-avatar"
     :style="{
       width: `${avatarSize}px`,
@@ -43,8 +42,6 @@ const { size: avatarSize } = toRefs(props)
 
 const avatarOption = ref<AvatarOption>(getRandomAvatarOption())
 
-const avatarRef = shallowRef<HTMLDivElement | null>(null)
-
 function getWrapperShapeClassName() {
   return {
     [WrapperShape.Circle]:
@@ -67,7 +64,7 @@ function resetAvatarOption() {
 }
 
 async function outputImage() {
-  const avatarEle = avatarRef.value
+  const avatarEle = document.querySelector('.vue-color-avatar') as HTMLDivElement
 
   if (avatarEle) {
     const html2canvas = (await import('html2canvas')).default
